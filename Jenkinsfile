@@ -7,7 +7,7 @@ pipeline {
         GOCACHE = "/tmp"
     }
     stages {
-        stage('Publish') {
+        stage('Build') {
             agent {
                 kubernetes {
                     inheritFrom 'agent-template'
@@ -15,7 +15,7 @@ pipeline {
             }
             steps{
                 container('docker') {
-                    sh ''
+                    checkout scm
                 }
             }
         }
